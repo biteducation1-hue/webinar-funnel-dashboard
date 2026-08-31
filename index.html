@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>משפך הצפייה בוובינר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f2f4f7; --card:#ffffff; --card-2:#f8fafc; --sunken:#eef1f5;
+  --ink:#0e141b; --ink-2:#48545f; --ink-3:#75828e;
+  --line:#e0e5ea; --line-2:#cfd7df;
+  --accent:#1c5cab; --accent-soft:#e8f0fb;
+  --good:#12855f; --good-soft:#e4f4ee;
+  --bad:#b23b2e; --bad-soft:#fbeae7;
+  --warn:#9a6a00;
+  --o1:#86b6ef; --o2:#5598e7; --o3:#2a78d6; --o4:#1c5cab; --o5:#104281;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --shadow:0 1px 2px rgba(14,20,27,.05), 0 8px 24px -16px rgba(14,20,27,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0d1116; --card:#151b22; --card-2:#1a212a; --sunken:#111720;
+    --ink:#e9eef4; --ink-2:#a4b1bf; --ink-3:#7d8b99;
+    --line:#232c36; --line-2:#33404d;
+    --accent:#6da7ec; --accent-soft:#152437;
+    --good:#3fbf90; --good-soft:#10261f;
+    --bad:#e88073; --bad-soft:#2a1815;
+    --warn:#d9a648;
+    --o1:#184f95; --o2:#256abf; --o3:#3987e5; --o4:#6da7ec; --o5:#9ec5f4;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0d1116; --card:#151b22; --card-2:#1a212a; --sunken:#111720;
+  --ink:#e9eef4; --ink-2:#a4b1bf; --ink-3:#7d8b99;
+  --line:#232c36; --line-2:#33404d;
+  --accent:#6da7ec; --accent-soft:#152437;
+  --good:#3fbf90; --good-soft:#10261f;
+  --bad:#e88073; --bad-soft:#2a1815;
+  --warn:#d9a648;
+  --o1:#184f95; --o2:#256abf; --o3:#3987e5; --o4:#6da7ec; --o5:#9ec5f4;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  direction:rtl; margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Assistant","Segoe UI",system-ui,-apple-system,sans-serif;
+  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  font-variant-numeric:tabular-nums;
+}
+h1,h2,h3{font-family:"Frank Ruhl Libre",Georgia,"Times New Roman",serif; margin:0; text-wrap:balance; font-weight:700; letter-spacing:-.01em}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px 72px}
+
+/* ---------- header ---------- */
+header.top{
+  background:var(--card); border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:40;
+}
+.top-in{max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px}
+.top-in h1{font-size:22px;font-weight:900}
+.top-meta{display:flex;flex-wrap:wrap;gap:8px 14px;margin-inline-start:auto;font-size:12.5px;color:var(--ink-3)}
+.top-meta b{color:var(--ink-2);font-weight:600}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--good);display:inline-block;margin-inline-end:6px;vertical-align:middle}
+
+.lede{padding:26px 0 4px;max-width:70ch;color:var(--ink-2);font-size:15.5px}
+.lede strong{color:var(--ink);font-weight:700}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;margin:22px 0 8px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow)}
+.kpi .k-l{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.kpi .k-v{font-family:"Frank Ruhl Libre",serif;font-size:30px;font-weight:700;line-height:1.15;margin-top:5px}
+.kpi .k-s{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.kpi.hero{background:var(--accent-soft);border-color:transparent}
+.kpi.hero .k-v{color:var(--accent)}
+
+/* ---------- sections ---------- */
+section{margin-top:38px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px;margin-bottom:14px}
+.sec-head h2{font-size:19px}
+.sec-head p{margin:0;color:var(--ink-3);font-size:13.5px;max-width:62ch}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:var(--shadow)}
+
+/* ---------- funnel ---------- */
+.funnel{display:flex;flex-direction:column;gap:3px}
+.frow{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
+.frow .flab{text-align:start;font-size:13.5px;line-height:1.3}
+.frow .flab b{display:block;font-weight:700;font-size:14px}
+.frow .flab span{color:var(--ink-3);font-size:12px}
+.ftrack{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;min-width:0}
+.fbarwrap{min-width:0}
+.fbar{height:38px;border-radius:4px 0 0 4px;flex:0 0 auto;position:relative;cursor:default;transition:filter .15s}
+.fbar:hover{filter:brightness(1.08)}
+.fmeta{display:flex;align-items:baseline;gap:10px;white-space:nowrap;justify-content:flex-start}
+.fnum{font-family:"Frank Ruhl Libre",serif;font-size:19px;font-weight:700}
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:2px 9px;font-size:12.5px;font-weight:700;line-height:1.5}
+.chip.c-conv{background:var(--accent-soft);color:var(--accent)}
+.chip.c-up{background:var(--good-soft);color:var(--good)}
+.chip.c-down{background:var(--bad-soft);color:var(--bad)}
+.chip.c-flat{background:var(--sunken);color:var(--ink-3)}
+.fgap{grid-column:2;display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-3);height:16px;padding-inline-start:2px}
+.fgap .tick{width:1px;height:14px;background:var(--line-2)}
+
+/* ---------- small multiples ---------- */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.repcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.rep-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:4px}
+.swatch{width:10px;height:10px;border-radius:2px;flex:0 0 auto}
+.rep-head h3{font-size:16.5px}
+.rep-head .rs{margin-inline-start:auto;font-size:12.5px;color:var(--ink-3)}
+.mini{display:flex;flex-direction:column;gap:4px;margin-top:12px}
+.mrow{display:grid;grid-template-columns:74px minmax(0,1fr) 96px;gap:10px;align-items:center;font-size:12.5px}
+.mrow .ml{color:var(--ink-2);white-space:nowrap}
+.mbar{height:20px;border-radius:3px 0 0 3px}
+.mv{text-align:start;white-space:nowrap;color:var(--ink-2)}
+.mv b{color:var(--ink);font-weight:700;font-size:13.5px}
+
+/* ---------- table ---------- */
+.tscroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+th,td{padding:9px 12px;text-align:start;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:600;border-bottom:1px solid var(--line-2)}
+tbody tr:hover{background:var(--card-2)}
+tbody tr.team-row{background:var(--sunken);font-weight:600}
+tbody tr.team-row td{border-bottom:1px solid var(--line-2)}
+td.num{font-variant-numeric:tabular-nums}
+.mult{display:inline-block;min-width:44px;text-align:center;border-radius:5px;padding:2px 6px;font-weight:700;font-size:12.5px}
+.name-cell{display:flex;align-items:center;gap:8px}
+.toggle{display:inline-flex;background:var(--sunken);border-radius:8px;padding:3px;gap:3px;margin-inline-start:auto}
+.toggle button{border:0;background:transparent;color:var(--ink-2);font:inherit;font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.toggle button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+/* ---------- charts ---------- */
+.chart{width:100%;overflow-x:auto}
+svg{display:block}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:3px;border-radius:2px;display:inline-block}
+
+/* ---------- revenue bars ---------- */
+.revrow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px;align-items:center;margin-bottom:9px}
+.revtrack{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;min-width:0}
+.revbarwrap{min-width:0}
+.revbar{height:26px;border-radius:3px 0 0 3px}
+.revlab{font-size:13px;color:var(--ink-2);white-space:nowrap}
+.revlab b{color:var(--ink);font-family:"Frank Ruhl Libre",serif;font-size:16px}
+
+/* ---------- insights ---------- */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.note{background:var(--card);border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:10px;padding:14px 16px}
+.note.good{border-inline-start-color:var(--good)}
+.note.warn{border-inline-start-color:var(--warn)}
+.note h3{font-size:14.5px;margin-bottom:5px;font-family:"Assistant",sans-serif;font-weight:700}
+.note p{margin:0;font-size:13.5px;color:var(--ink-2)}
+
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3)}
+footer ul{margin:8px 0 0;padding-inline-start:18px}
+footer li{margin-bottom:3px}
+
+/* ---------- tooltip ---------- */
+#tip{position:fixed;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--ink);color:var(--bg);
+  padding:7px 10px;border-radius:7px;font-size:12.5px;line-height:1.45;z-index:99;max-width:230px;box-shadow:0 6px 20px rgba(0,0,0,.28)}
+#tip b{color:var(--bg)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:560px){
+  .frow{grid-template-columns:112px 1fr}
+  .mrow{grid-template-columns:60px minmax(0,1fr) 84px}
+  .kpi .k-v{font-size:26px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <h1>משפך הצפייה בוובינר</h1>
+    <div class="top-meta">
+      <span><b>תקופה:</b> מאי 2026 – היום</span>
+      <span><b>נציגים:</b> ראובן · אלי · אבי · צבי</span>
+      <span><span class="dot"></span>עודכן <b id="updated">—</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <p class="lede">
+    כל ליד שנגע בוובינר נמדד לפי <strong>כמה דקות הוא באמת נשאר</strong>, ומול זה נבדק אם הדיל נסגר.
+    הבסיס: <strong id="lede-n">—</strong> דילים סגורים (WON או LOST) שנוצרו מ‑01/05/2026, ללא חידושי מנוי — לקוחות חדשים בלבד.
+  </p>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section>
+    <div class="sec-head">
+      <h2>משפך הצוות</h2>
+      <p>כל שורה היא קבוצת הלידים ששהו לפחות X דקות. השאלה היא כמה זמן נשארו — כל שעה נוספת מכפילה את ההמרה.</p>
+    </div>
+    <div class="panel"><div class="funnel" id="team-funnel"></div></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>משפך לכל נציג</h2>
+      <p>אותה חתיכת נתונים, מפוצלת לפי בעל הדיל. השוו את השורה התחתונה (120+ דקות) — שם נמצא כמעט כל הכסף.</p>
+    </div>
+    <div class="grid2" id="rep-funnels"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>השוואה בין הנציגים</h2>
+      <p>מכפיל מול ממוצע הצוות: 1.00 = בדיוק כמו הצוות, 1.25 = טוב ב‑25% מהצוות באותה מדרגת זמן.</p>
+      <div class="toggle" role="group" aria-label="תצוגת טבלה">
+        <button type="button" data-mode="mult" aria-pressed="true">מכפיל מול הצוות</button>
+        <button type="button" data-mode="conv" aria-pressed="false">אחוז המרה</button>
+      </div>
+    </div>
+    <div class="panel"><div class="tscroll"><table id="cmp"></table></div></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>הכנסות לפי מדרגת זמן</h2>
+      <p>מדרגות נפרדות (לא מצטברות), סכומי עסקאות שנסגרו — כולל מע״מ 18%.</p>
+    </div>
+    <div class="panel"><div id="revenue"></div></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>מגמה חודשית</h2>
+      <p>אחוז ההמרה של כל נציג על כלל לידי הוובינר, לפי חודש יצירת הליד.</p>
+    </div>
+    <div class="panel">
+      <div class="chart" id="trend"></div>
+      <div class="legend" id="trend-legend"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>מה עולה מהנתונים</h2></div>
+    <div class="notes" id="notes"></div>
+  </section>
+
+  <footer>
+    <b>איך זה נמדד</b>
+    <ul>
+      <li>מקור: Pipedrive — שדה «כמה דקות היה בוובינר(חדש)» על הדיל.</li>
+      <li>בסיס: דילים שנוצרו מ‑01/05/2026, בבעלות ארבעת הנציגים הפעילים, עם ערך בשדה הדקות.</li>
+      <li>המרה = WON ÷ (WON + LOST). דילים פתוחים אינם נספרים כלל במכנה — הם מוצגים בנפרד לכל נציג.</li>
+      <li>סוג דיל «חידוש מנוי» מסונן החוצה — נמדדים לקוחות חדשים בלבד.</li>
+      <li>אבי חוטובלי — רק החשבון הפעיל (החשבון הישן «Avi Hotovely» אינו כלול).</li>
+      <li>סכומי הכנסה כפי שמופיעים ב‑Pipedrive, כולל מע״מ 18%.</li>
+    </ul>
+  </footer>
+</div>
+<div id="tip" role="status"></div>
+
+<script>
+const DATA = {"meta": {"start": "2026-05-01", "generated": "2026-08-31T18:23:44.178173+00:00", "reps": ["ראובן", "אלי בן סימון", "אבי חוטובלי", "צבי שמש"], "total_deals": 1460, "closed": 1381, "open": 79, "won": 150}, "team": {"funnel": [{"th": 0, "n": 1381, "won": 150, "conv": 10.86, "rev": 1240287}, {"th": 30, "n": 1140, "won": 144, "conv": 12.63, "rev": 1195437}, {"th": 60, "n": 983, "won": 141, "conv": 14.34, "rev": 1168167}, {"th": 90, "n": 828, "won": 132, "conv": 15.94, "rev": 1094590}, {"th": 120, "n": 592, "won": 114, "conv": 19.26, "rev": 947610}], "excl": [{"lo": 0, "hi": 30, "n": 241, "won": 6, "conv": 2.49, "rev": 44850, "avg": 7475}, {"lo": 30, "hi": 60, "n": 157, "won": 3, "conv": 1.91, "rev": 27270, "avg": 9090}, {"lo": 60, "hi": 90, "n": 155, "won": 9, "conv": 5.81, "rev": 73577, "avg": 8175}, {"lo": 90, "hi": 120, "n": 236, "won": 18, "conv": 7.63, "rev": 146980, "avg": 8166}, {"lo": 120, "hi": null, "n": 592, "won": 114, "conv": 19.26, "rev": 947610, "avg": 8312}]}, "reps": {"ראובן": {"funnel": [{"th": 0, "n": 445, "won": 37, "conv": 8.31, "rev": 307200}, {"th": 30, "n": 368, "won": 36, "conv": 9.78, "rev": 298410}, {"th": 60, "n": 311, "won": 36, "conv": 11.58, "rev": 298410}, {"th": 90, "n": 264, "won": 34, "conv": 12.88, "rev": 282280}, {"th": 120, "n": 189, "won": 29, "conv": 15.34, "rev": 244530}], "excl": [{"lo": 0, "hi": 30, "n": 77, "won": 1, "conv": 1.3, "rev": 8790, "avg": 8790}, {"lo": 30, "hi": 60, "n": 57, "won": 0, "conv": 0.0, "rev": 0, "avg": 0}, {"lo": 60, "hi": 90, "n": 47, "won": 2, "conv": 4.26, "rev": 16130, "avg": 8065}, {"lo": 90, "hi": 120, "n": 75, "won": 5, "conv": 6.67, "rev": 37750, "avg": 7550}, {"lo": 120, "hi": null, "n": 189, "won": 29, "conv": 15.34, "rev": 244530, "avg": 8432}], "n": 445, "open": 31, "won": 37, "rev": 307200}, "אלי בן סימון": {"funnel": [{"th": 0, "n": 301, "won": 38, "conv": 12.62, "rev": 290367}, {"th": 30, "n": 240, "won": 34, "conv": 14.17, "rev": 263097}, {"th": 60, "n": 210, "won": 32, "conv": 15.24, "rev": 244617}, {"th": 90, "n": 176, "won": 29, "conv": 16.48, "rev": 223230}, {"th": 120, "n": 133, "won": 27, "conv": 20.3, "rev": 205650}], "excl": [{"lo": 0, "hi": 30, "n": 61, "won": 4, "conv": 6.56, "rev": 27270, "avg": 6818}, {"lo": 30, "hi": 60, "n": 30, "won": 2, "conv": 6.67, "rev": 18480, "avg": 9240}, {"lo": 60, "hi": 90, "n": 34, "won": 3, "conv": 8.82, "rev": 21387, "avg": 7129}, {"lo": 90, "hi": 120, "n": 43, "won": 2, "conv": 4.65, "rev": 17580, "avg": 8790}, {"lo": 120, "hi": null, "n": 133, "won": 27, "conv": 20.3, "rev": 205650, "avg": 7617}], "n": 301, "open": 14, "won": 38, "rev": 290367}, "אבי חוטובלי": {"funnel": [{"th": 0, "n": 273, "won": 34, "conv": 12.45, "rev": 289300}, {"th": 30, "n": 225, "won": 33, "conv": 14.67, "rev": 280510}, {"th": 60, "n": 193, "won": 32, "conv": 16.58, "rev": 271720}, {"th": 90, "n": 166, "won": 30, "conv": 18.07, "rev": 254140}, {"th": 120, "n": 111, "won": 27, "conv": 24.32, "rev": 227770}], "excl": [{"lo": 0, "hi": 30, "n": 48, "won": 1, "conv": 2.08, "rev": 8790, "avg": 8790}, {"lo": 30, "hi": 60, "n": 32, "won": 1, "conv": 3.12, "rev": 8790, "avg": 8790}, {"lo": 60, "hi": 90, "n": 27, "won": 2, "conv": 7.41, "rev": 17580, "avg": 8790}, {"lo": 90, "hi": 120, "n": 55, "won": 3, "conv": 5.45, "rev": 26370, "avg": 8790}, {"lo": 120, "hi": null, "n": 111, "won": 27, "conv": 24.32, "rev": 227770, "avg": 8436}], "n": 273, "open": 20, "won": 34, "rev": 289300}, "צבי שמש": {"funnel": [{"th": 0, "n": 362, "won": 41, "conv": 11.33, "rev": 353420}, {"th": 30, "n": 307, "won": 41, "conv": 13.36, "rev": 353420}, {"th": 60, "n": 269, "won": 41, "conv": 15.24, "rev": 353420}, {"th": 90, "n": 222, "won": 39, "conv": 17.57, "rev": 334940}, {"th": 120, "n": 159, "won": 31, "conv": 19.5, "rev": 269660}], "excl": [{"lo": 0, "hi": 30, "n": 55, "won": 0, "conv": 0.0, "rev": 0, "avg": 0}, {"lo": 30, "hi": 60, "n": 38, "won": 0, "conv": 0.0, "rev": 0, "avg": 0}, {"lo": 60, "hi": 90, "n": 47, "won": 2, "conv": 4.26, "rev": 18480, "avg": 9240}, {"lo": 90, "hi": 120, "n": 63, "won": 8, "conv": 12.7, "rev": 65280, "avg": 8160}, {"lo": 120, "hi": null, "n": 159, "won": 31, "conv": 19.5, "rev": 269660, "avg": 8699}], "n": 362, "open": 14, "won": 41, "rev": 353420}}, "monthly": {"ראובן": [{"m": "2026-05", "n": 174, "won": 10, "conv": 5.75}, {"m": "2026-06", "n": 95, "won": 9, "conv": 9.47}, {"m": "2026-07", "n": 98, "won": 8, "conv": 8.16}, {"m": "2026-08", "n": 78, "won": 10, "conv": 12.82}], "אלי בן סימון": [{"m": "2026-05", "n": 93, "won": 9, "conv": 9.68}, {"m": "2026-06", "n": 78, "won": 9, "conv": 11.54}, {"m": "2026-07", "n": 86, "won": 13, "conv": 15.12}, {"m": "2026-08", "n": 44, "won": 7, "conv": 15.91}], "אבי חוטובלי": [{"m": "2026-05", "n": 15, "won": 2, "conv": 13.33}, {"m": "2026-06", "n": 102, "won": 16, "conv": 15.69}, {"m": "2026-07", "n": 97, "won": 10, "conv": 10.31}, {"m": "2026-08", "n": 59, "won": 6, "conv": 10.17}], "צבי שמש": [{"m": "2026-05", "n": 132, "won": 13, "conv": 9.85}, {"m": "2026-06", "n": 78, "won": 9, "conv": 11.54}, {"m": "2026-07", "n": 80, "won": 10, "conv": 12.5}, {"m": "2026-08", "n": 72, "won": 9, "conv": 12.5}]}, "monthly_team": [{"m": "2026-05", "n": 414, "won": 34, "conv": 8.21}, {"m": "2026-06", "n": 353, "won": 43, "conv": 12.18}, {"m": "2026-07", "n": 361, "won": 41, "conv": 11.36}, {"m": "2026-08", "n": 253, "won": 32, "conv": 12.65}]};
+
+</script>
+<script>
+(function(){
+const REPS = DATA.meta.reps;
+const ORD = ['--o1','--o2','--o3','--o4','--o5'];
+const SER = {'ראובן':'--s1','אלי בן סימון':'--s2','אבי חוטובלי':'--s3','צבי שמש':'--s4'};
+const SHORT = {'ראובן':'ראובן','אלי בן סימון':'אלי','אבי חוטובלי':'אבי','צבי שמש':'צבי'};
+const LBL = ['כלל לידי הוובינר','נשארו 30+ דקות','נשארו 60+ דקות','נשארו 90+ דקות','נשארו 120+ דקות'];
+const SUB = ['כל מי שנכנס','חצי שעה ומעלה','שעה ומעלה','שעה וחצי ומעלה','שעתיים ומעלה'];
+const EXLBL = ['פחות מ‑30 דק׳','30–59 דק׳','60–89 דק׳','90–119 דק׳','120+ דק׳'];
+const cv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const nf = n => n.toLocaleString('he-IL');
+const money = n => '₪' + Math.round(n).toLocaleString('he-IL');
+const pct = n => n.toFixed(1).replace(/\.0$/,'') + '%';
+
+/* ---------- tooltip ---------- */
+const tip = document.getElementById('tip');
+function bindTip(el, html){
+  el.addEventListener('pointerenter', e => { tip.innerHTML = html; tip.style.opacity = 1; move(e); });
+  el.addEventListener('pointermove', move);
+  el.addEventListener('pointerleave', () => tip.style.opacity = 0);
+  function move(e){
+    const r = tip.getBoundingClientRect();
+    let x = e.clientX - r.width - 14; if (x < 8) x = e.clientX + 14;
+    let y = e.clientY - r.height - 12; if (y < 8) y = e.clientY + 16;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+  }
+}
+
+/* ---------- header + kpis ---------- */
+document.getElementById('updated').textContent =
+  DATA.meta.generated ? new Date(DATA.meta.generated).toLocaleDateString('he-IL',{day:'2-digit',month:'2-digit',year:'numeric'}) : '—';
+document.getElementById('lede-n').textContent = nf(DATA.meta.closed);
+
+const T = DATA.team.funnel, TE = DATA.team.excl;
+const lift = (TE[4].conv / TE[0].conv);
+const revShare = TE[4].rev / T[0].rev * 100;
+const kpis = [
+  {l:'לידים סגורים', v:nf(DATA.meta.closed), s:nf(DATA.meta.open)+' דילים עדיין פתוחים'},
+  {l:'עסקאות שנסגרו', v:nf(DATA.meta.won), s:'המרה כוללת '+pct(T[0].conv)},
+  {l:'הכנסות', v:money(T[0].rev), s:money(T[0].rev/1.18)+' ללא מע״מ'},
+  {l:'המרה ב‑120+ דקות', v:pct(TE[4].conv), s:'מול '+pct(TE[0].conv)+' אצל מי שעזב מוקדם', hero:true},
+  {l:'הכנסה מ‑120+ דקות', v:Math.round(revShare)+'%', s:'מכלל ההכנסות מהוובינר'}
+];
+document.getElementById('kpis').innerHTML = kpis.map(k =>
+  `<div class="kpi${k.hero?' hero':''}"><div class="k-l">${k.l}</div><div class="k-v">${k.v}</div><div class="k-s">${k.s}</div></div>`).join('');
+
+/* ---------- team funnel ---------- */
+(function(){
+  const host = document.getElementById('team-funnel');
+  const max = T[0].n;
+  T.forEach((r,i) => {
+    const row = document.createElement('div'); row.className = 'frow';
+    row.innerHTML = `<div class="flab"><b>${LBL[i]}</b><span>${SUB[i]}</span></div>
+      <div class="ftrack">
+        <div class="fbarwrap"><div class="fbar" style="width:${(r.n/max*100).toFixed(2)}%;background:var(${ORD[i]})"></div></div>
+        <div class="fmeta"><span class="fnum">${nf(r.n)}</span>
+          <span class="chip c-conv">${pct(r.conv)} המרה</span>
+          <span style="color:var(--ink-3);font-size:12.5px">${nf(r.won)} עסקאות</span></div>
+      </div>`;
+    bindTip(row.querySelector('.fbar'),
+      `<b>${LBL[i]}</b><br>${nf(r.n)} לידים · ${nf(r.won)} נסגרו<br>המרה ${pct(r.conv)} · ${money(r.rev)}`);
+    host.appendChild(row);
+    if (i < T.length-1){
+      const d = (T[i+1].conv / r.conv - 1) * 100;
+      const g = document.createElement('div'); g.className = 'fgap';
+      g.innerHTML = `<span class="tick"></span><span class="chip ${d>0.5?'c-up':d<-0.5?'c-down':'c-flat'}" style="font-size:11.5px;padding:1px 8px">${d>0?'+':''}${d.toFixed(0)}% המרה</span><span>בשלב הבא</span>`;
+      host.appendChild(g);
+    }
+  });
+})();
+
+/* ---------- rep small multiples ---------- */
+(function(){
+  const host = document.getElementById('rep-funnels');
+  REPS.forEach(name => {
+    const R = DATA.reps[name], f = R.funnel, max = f[0].n;
+    const card = document.createElement('div'); card.className = 'repcard';
+    const best = f[4].conv, teamBest = T[4].conv;
+    const m = teamBest ? best/teamBest : 0;
+    card.innerHTML = `<div class="rep-head">
+        <span class="swatch" style="background:var(${SER[name]})"></span>
+        <h3>${name}</h3>
+        <span class="rs">${nf(R.n)} סגורים · ${nf(R.won)} עסקאות · ${money(R.rev)}</span>
+      </div>
+      <div style="font-size:12.5px;color:var(--ink-2)">המרה כוללת <b style="color:var(--ink)">${pct(f[0].conv)}</b>
+        · ב‑120+ דק׳ <b style="color:var(--ink)">${pct(f[4].conv)}</b>
+        <span class="chip ${m>=1.05?'c-up':m<=0.95?'c-down':'c-flat'}" style="font-size:11.5px;padding:1px 8px">×${m.toFixed(2)} מול הצוות</span></div>
+      <div class="mini"></div>`;
+    const mini = card.querySelector('.mini');
+    f.forEach((r,i) => {
+      const row = document.createElement('div'); row.className = 'mrow';
+      row.innerHTML = `<span class="ml">${i===0?'הכל':r.th+'+ דק׳'}</span>
+        <span class="mbar" style="display:block;width:${(r.n/max*100).toFixed(2)}%;background:var(${ORD[i]})"></span>
+        <span class="mv"><b>${pct(r.conv)}</b> · ${nf(r.n)} לידים</span>`;
+      bindTip(row.querySelector('.mbar'),
+        `<b>${name} · ${i===0?'כל הלידים':r.th+'+ דקות'}</b><br>${nf(r.n)} לידים · ${nf(r.won)} נסגרו<br>המרה ${pct(r.conv)} · ${money(r.rev)}`);
+      mini.appendChild(row);
+    });
+    host.appendChild(card);
+  });
+})();
+
+/* ---------- comparison table ---------- */
+(function(){
+  const tbl = document.getElementById('cmp');
+  const ths = [0,30,60,90,120];
+  let mode = 'mult';
+  function tone(m){
+    if (m >= 1.15) return ['var(--good-soft)','var(--good)'];
+    if (m >= 1.03) return ['var(--good-soft)','var(--good)'];
+    if (m <= 0.85) return ['var(--bad-soft)','var(--bad)'];
+    if (m <= 0.97) return ['var(--bad-soft)','var(--bad)'];
+    return ['var(--sunken)','var(--ink-2)'];
+  }
+  function render(){
+    let h = '<thead><tr><th>נציג</th>' + ths.map((t,i)=>`<th>${i===0?'כל הלידים':t+'+ דק׳'}</th>`).join('')
+          + '<th>עסקאות</th><th>הכנסות</th></tr></thead><tbody>';
+    REPS.forEach(name => {
+      const R = DATA.reps[name];
+      h += `<tr><td><span class="name-cell"><span class="swatch" style="background:var(${SER[name]})"></span>${name}</span></td>`;
+      R.funnel.forEach((r,i) => {
+        if (mode === 'conv'){
+          h += `<td class="num">${pct(r.conv)} <span style="color:var(--ink-3);font-size:12px">(${nf(r.won)}/${nf(r.n)})</span></td>`;
+        } else {
+          const m = T[i].conv ? r.conv/T[i].conv : 0, [bg,fg] = tone(m);
+          h += `<td class="num"><span class="mult" style="background:${bg};color:${fg}">×${m.toFixed(2)}</span></td>`;
+        }
+      });
+      h += `<td class="num">${nf(R.won)}</td><td class="num">${money(R.rev)}</td></tr>`;
+    });
+    h += `<tr class="team-row"><td>ממוצע הצוות</td>` +
+      T.map(r => `<td class="num">${mode==='conv' ? pct(r.conv)+` <span style="color:var(--ink-3);font-size:12px">(${nf(r.won)}/${nf(r.n)})</span>` : '×1.00'}</td>`).join('') +
+      `<td class="num">${nf(DATA.meta.won)}</td><td class="num">${money(T[0].rev)}</td></tr></tbody>`;
+    tbl.innerHTML = h;
+  }
+  document.querySelectorAll('.toggle button').forEach(b => b.addEventListener('click', () => {
+    mode = b.dataset.mode;
+    document.querySelectorAll('.toggle button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    render();
+  }));
+  render();
+})();
+
+/* ---------- revenue by exclusive bucket ---------- */
+(function(){
+  const host = document.getElementById('revenue');
+  const max = Math.max(...TE.map(b => b.rev)) || 1;
+  TE.forEach((b,i) => {
+    const row = document.createElement('div'); row.className = 'revrow';
+    const share = b.rev / T[0].rev * 100;
+    row.innerHTML = `<span class="revlab" style="text-align:start">${EXLBL[i]}</span>
+      <span class="revtrack">
+        <span class="revbarwrap"><span class="revbar" style="display:block;width:${Math.max(b.rev/max*100,0.6).toFixed(2)}%;background:var(${ORD[i]})"></span></span>
+        <span class="revlab"><b>${money(b.rev)}</b> · ${share.toFixed(0)}% מההכנסות · המרה ${pct(b.conv)}</span>
+      </span>`;
+    bindTip(row.querySelector('.revbar'),
+      `<b>${EXLBL[i]}</b><br>${nf(b.n)} לידים · ${nf(b.won)} עסקאות<br>המרה ${pct(b.conv)}<br>${money(b.rev)}${b.avg?' · עסקה ממוצעת '+money(b.avg):''}`);
+    host.appendChild(row);
+  });
+})();
+
+/* ---------- monthly trend ---------- */
+(function(){
+  const host = document.getElementById('trend');
+  const months = DATA.monthly_team.map(m => m.m);
+  const W = 760, H = 310, P = {t:18, r:66, b:38, l:44};
+  const all = REPS.flatMap(r => DATA.monthly[r].map(p => p.conv)).concat(DATA.monthly_team.map(p => p.conv));
+  const yMax = Math.ceil(Math.max(...all) / 5) * 5 + 2, yMin = 0;
+  const x = i => P.l + i * (W - P.l - P.r) / Math.max(months.length - 1, 1);
+  const y = v => P.t + (1 - (v - yMin)/(yMax - yMin)) * (H - P.t - P.b);
+  const mname = m => ['ינו','פבר','מרץ','אפר','מאי','יוני','יולי','אוג','ספט','אוק','נוב','דצמ'][+m.slice(5,7)-1] + ' ' + m.slice(2,4);
+
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:560px;direction:ltr" role="img" aria-label="מגמת המרה חודשית לפי נציג">`;
+  for (let g = 0; g <= yMax; g += 5){
+    s += `<line x1="${P.l}" y1="${y(g)}" x2="${W-P.r}" y2="${y(g)}" stroke="${cv('--line')}" stroke-width="1"/>`;
+    s += `<text x="${P.l-8}" y="${y(g)+4}" text-anchor="end" font-size="11" fill="${cv('--ink-3')}">${g}%</text>`;
+  }
+  months.forEach((m,i) => {
+    s += `<text x="${x(i)}" y="${H-14}" text-anchor="middle" font-size="11.5" fill="${cv('--ink-3')}">${mname(m)}</text>`;
+  });
+  const teamPath = DATA.monthly_team.map((p,i) => `${i?'L':'M'}${x(i)},${y(p.conv)}`).join(' ');
+  s += `<path d="${teamPath}" fill="none" stroke="${cv('--ink-3')}" stroke-width="2" stroke-dasharray="5 4" opacity=".75"/>`;
+  const ends = [];
+  REPS.forEach(name => {
+    const pts = DATA.monthly[name];
+    const d = pts.map((p,i) => `${i?'L':'M'}${x(i)},${y(p.conv)}`).join(' ');
+    const c = cv(SER[name]);
+    s += `<path d="${d}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    pts.forEach((p,i) => {
+      s += `<circle cx="${x(i)}" cy="${y(p.conv)}" r="4.5" fill="${c}" stroke="${cv('--card')}" stroke-width="2"
+             data-t="&lt;b&gt;${name} · ${mname(p.m)}&lt;/b&gt;&lt;br&gt;${p.won}/${p.n} · המרה ${pct(p.conv)}" class="pt"/>`;
+    });
+    ends.push({y0:y(pts[pts.length-1].conv), t:SHORT[name], c, w:700, size:12});
+  });
+  const tl = DATA.monthly_team[DATA.monthly_team.length-1];
+  ends.push({y0:y(tl.conv), t:'צוות', c:cv('--ink-3'), w:400, size:11});
+  ends.sort((a,b) => a.y0 - b.y0);
+  const GAP = 15;
+  ends.forEach((e,i) => { e.y = i === 0 ? e.y0 : Math.max(e.y0, ends[i-1].y + GAP); });
+  const over = ends[ends.length-1].y - (H - P.b);
+  if (over > 0) ends.forEach(e => e.y -= over);
+  ends.forEach(e => {
+    const lx = x(months.length-1);
+    if (Math.abs(e.y - e.y0) > 1.5)
+      s += `<path d="M${lx+4},${e.y0} L${lx+9},${e.y0} L${lx+13},${e.y-4} L${lx+17},${e.y-4}" fill="none" stroke="${e.c}" stroke-width="1" opacity=".55"/>`;
+    s += `<text x="${lx+19}" y="${e.y}" font-size="${e.size}" font-weight="${e.w}" fill="${e.c}">${e.t}</text>`;
+  });
+  s += '</svg>';
+  host.innerHTML = s;
+  host.querySelectorAll('.pt').forEach(c => bindTip(c, c.dataset.t));
+  document.getElementById('trend-legend').innerHTML =
+    REPS.map(n => `<span><i style="background:var(${SER[n]})"></i>${n}</span>`).join('') +
+    `<span><i style="background:var(--ink-3)"></i>ממוצע הצוות</span>`;
+})();
+
+/* ---------- notes ---------- */
+(function(){
+  const best = REPS.slice().sort((a,b) => DATA.reps[b].funnel[4].conv - DATA.reps[a].funnel[4].conv)[0];
+  const worstEarly = REPS.slice().sort((a,b) => DATA.reps[a].funnel[0].conv - DATA.reps[b].funnel[0].conv)[0];
+  const drop = (1 - T[4].n / T[0].n) * 100;
+  const notes = [
+    {c:'good', h:'שעתיים זה קו פרשת המים',
+     p:`מי שנשאר 120+ דקות ממיר ב‑${pct(TE[4].conv)} — פי ${(TE[4].conv/TE[0].conv).toFixed(1)} ממי שעזב לפני חצי שעה (${pct(TE[0].conv)}). ${Math.round(TE[4].rev/T[0].rev*100)}% מכלל ההכנסות מגיעים מהקבוצה הזו בלבד.`},
+    {c:'warn', h:'הנשירה עצמה היא ההזדמנות',
+     p:`${Math.round(drop)}% מהלידים לא מגיעים לשעתיים (${nf(T[0].n - T[4].n)} מתוך ${nf(T[0].n)}). כל אחוז שמצליחים להחזיק יותר בוובינר שווה יותר מאחוז בשיפור סקריפט השיחה.`},
+    {c:'', h:`${best} מוביל בקבוצה הכי חמה`,
+     p:`ב‑120+ דקות ${best} ממיר ${pct(DATA.reps[best].funnel[4].conv)} מול ${pct(T[4].conv)} בצוות (×${(DATA.reps[best].funnel[4].conv/T[4].conv).toFixed(2)}). שווה לעבור על השיחות שלו בקבוצה הזו.`},
+    {c:'', h:'לידים קרים כמעט לא נסגרים',
+     p:`במדרגות מתחת ל‑60 דקות נסגרו ${TE[0].won + TE[1].won} עסקאות מתוך ${nf(TE[0].n + TE[1].n)} לידים — ${pct((TE[0].won+TE[1].won)/(TE[0].n+TE[1].n)*100)}. שווה לבחון תיעדוף זמן החזרה לפי מדרגת השהייה.`}
+  ];
+  document.getElementById('notes').innerHTML = notes.map(n =>
+    `<div class="note ${n.c}"><h3>${n.h}</h3><p>${n.p}</p></div>`).join('');
+})();
+})();
+</script>
+</body>
+</html>
